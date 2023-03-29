@@ -4,6 +4,7 @@ import Head from "next/head";
 export default function Create() {
 
     const [title, setTitle] = useState("");
+    const [users, setUsers] = useState("");
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
 
@@ -14,7 +15,7 @@ export default function Create() {
         if (title) {
             // send a request to the server.
             try {
-                const body = { name: title, };
+                const body = { name: title, members: users };
                 await fetch(`/api/group/create`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -32,7 +33,7 @@ export default function Create() {
     return (
         <>
             <Head>
-                <title>Create Post</title>
+                <title>Create Group</title>
             </Head>
             <div>
                 <form onSubmit={handleSubmit}>
@@ -51,9 +52,8 @@ export default function Create() {
                         ) : null
                     }
                     <div className="form-group">
-
-                        <label>Group name</label>
-                        <input type="text" name="title" placeholder="Group name" value={title} onChange={(e) => setTitle(e.target.value)} />
+                            <label>Group name</label>
+                            <input type="text" name="title" placeholder="Group name" value={title} onChange={(e) => setTitle(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <button type="submit">Add Group</button>

@@ -45,13 +45,13 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  group         appartenir[]
+  group         Group[]
 }
 
 model Group {
   id       String       @id @default(cuid())
   name     String?
-  user     appartenir[]
+  users     User[]
   reminder Remindr[]
 }
 
@@ -64,14 +64,13 @@ model Remindr {
   group       Group[]
 }
 
-model appartenir {
-  idgroup String
-  group   Group  @relation(fields: [idgroup], references: [id], onDelete: Cascade)
-  iduser  String
-  user    User   @relation(fields: [iduser], references: [id], onDelete: Cascade)
-
-  @@id([idgroup, iduser])
-}
+//model appartenir {
+//  idgroup String
+//  group   Group  @relation(fields: [idgroup], references: [id], onDelete: Cascade)
+//  iduser  String
+//  user    User   @relation(fields: [iduser], references: [id], onDelete: Cascade)
+//  @@id([idgroup, iduser])
+//}
 
 model VerificationToken {
   identifier String
