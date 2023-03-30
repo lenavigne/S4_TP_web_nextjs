@@ -15,6 +15,7 @@ export default async function sertarien(req, res) {
         where: { email: session.user.email },
         include: { group: true }
     });
+    console.log(current_user);
 
     return res.status(200).json(current_user.group);
 }
